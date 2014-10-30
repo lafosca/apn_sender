@@ -6,6 +6,9 @@ module APN
       if Rails.env.development?
         APN.certificate_name =  "apn_development.pem"
         APN.host =  "gateway.sandbox.push.apple.com"
+      elsif !Rails.env.production?
+        APN.certificate_name =  "apn_#{Rails.env}.pem"
+        APN.host =  "gateway.sandbox.push.apple.com"
       end
       APN.logger = Rails.logger
     end
